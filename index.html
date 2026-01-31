@@ -6,37 +6,47 @@
   <title>Music</title>
 
   <style>
-    body{
-  font-family: "MS Sans Serif", "Tahoma", system-ui, sans-serif;
-  background: #008080; /* classic teal desktop */
+   body{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  background: #050a06;
+  color: #a6ffb6;
   padding: 24px;
 }
 
 .player{
-  max-width: 420px;
-  background: #c0c0c0;
-  border: 2px solid #000;
-  box-shadow:
-    2px 2px 0 #fff inset,
-    -2px -2px 0 #808080 inset,
-    6px 6px 0 rgba(0,0,0,0.25);
-  padding: 12px;
+  max-width: 520px;
+  border: 1px solid #2cff66;
+  padding: 14px;
+  background: rgba(0,0,0,0.6);
+  box-shadow: 0 0 18px rgba(44,255,102,0.25);
+  position: relative;
+}
+
+.player::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(166,255,182,0.08),
+      rgba(166,255,182,0.08) 1px,
+      rgba(0,0,0,0) 3px,
+      rgba(0,0,0,0) 4px
+    );
+  mix-blend-mode: screen;
 }
 
 #title{
   margin: 0 0 10px;
-  padding: 6px 8px;
-  background: #000080;   /* navy title bar */
-  color: #fff;
-  border: 2px solid #000;
-  box-shadow:
-    1px 1px 0 #fff inset,
-    -1px -1px 0 #404040 inset;
-  font-size: 14px;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 8px rgba(44,255,102,0.5);
 }
 
 #audio{
   width: 100%;
+  filter: hue-rotate(90deg) saturate(1.3); /* tints default controls slightly */
   margin-bottom: 10px;
 }
 
@@ -44,27 +54,25 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  border: 2px solid #000;
-  background: #fff;
-  max-height: 220px;
+  border-top: 1px dashed rgba(44,255,102,0.5);
+  max-height: 240px;
   overflow: auto;
 }
 
 #playlist li{
-  padding: 6px 8px;
-  border-bottom: 1px solid #ddd;
+  padding: 6px 0;
   cursor: pointer;
-  font-size: 13px;
+  opacity: 0.9;
 }
 
 #playlist li:hover{
-  background: #000080;
-  color: #fff;
+  opacity: 1;
+  text-decoration: underline;
 }
 
 #playlist li.active{
-  background: #000;
-  color: #00ff00; /* neon green */
+  color: #2cff66;
+  font-weight: 700;
 }
 
   </style>

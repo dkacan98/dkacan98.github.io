@@ -8,4 +8,48 @@
   <h1>Hello 👋</h1>
   <p>This is my website.</p>
 </body>
+  <div class="player">
+  <img id="cover" src="images/cover.jpg" alt="Cover" />
+  <h3 id="title">Track title</h3>
+
+  <audio id="audio" controls></audio>
+
+  <ul id="playlist"></ul>
+</div>
+
+<script>
+const tracks = [
+  { title: "Track 1", src: "audio/track1.mp3" },
+  { title: "Track 2", src: "audio/track2.mp3" },
+  { title: "Track 3", src: "audio/track3.mp3" }
+];
+
+const audio = document.getElementById("audio");
+const title = document.getElementById("title");
+const playlist = document.getElementById("playlist");
+
+let current = 0;
+
+function loadTrack(i) {
+  current = i;
+  audio.src = tracks[i].src;
+  title.textContent = tracks[i].title;
+  audio.play();
+}
+
+tracks.forEach((track, i) => {
+  const li = document.createElement("li");
+  li.textContent = track.title;
+  li.onclick = () => loadTrack(i);
+  playlist.appendChild(li);
+});
+
+audio.addEventListener("ended", () => {
+  current = (current + 1) % tracks.length;
+  loadTrack(current);
+});
+
+loadTrack(0);
+</script>
+
 </html>
